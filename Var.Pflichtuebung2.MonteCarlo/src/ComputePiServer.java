@@ -8,7 +8,7 @@ public class ComputePiServer implements ComputePiRemote {
 	@Override
 	public BigDecimal computePi(int precision) throws RemoteException {
 		
-		return Pi.computePi(precision);
+		//return Pi.computePi(precision);
 	}
 
 
