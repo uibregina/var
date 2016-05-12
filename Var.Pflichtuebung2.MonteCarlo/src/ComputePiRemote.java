@@ -1,8 +1,8 @@
-import java.math.*;
+import java.math.BigDecimal;
 import java.rmi.*;
 
 public interface ComputePiRemote extends Remote {
 	
-	BigDecimal computePi(int precision) throws RemoteException;
+	BigDecimal computePi(int v) throws RemoteException;
 
 }
