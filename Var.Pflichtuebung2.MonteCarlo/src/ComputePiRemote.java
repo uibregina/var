@@ -3,6 +3,6 @@ import java.rmi.*;
 
 public interface ComputePiRemote extends Remote {
 	
-	BigDecimal computePi(int v) throws RemoteException;
+	BigDecimal computePi(int g) throws RemoteException;
 
 }

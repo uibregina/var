@@ -1,5 +1,5 @@
 import java.math.*;
-import java.rmi.*;
+import javax.naming.*;
 
 public class ComputePiClient {
 
@@ -9,8 +9,10 @@ public class ComputePiClient {
             System.setSecurityManager(new SecurityManager());
     }
         try{
-            String name = "//" + args[0] + "ComputePi";
-            ComputePiRemote computePiRemote = (ComputePiRemote) Naming.lookup(name);
+            String name = "ComputePi";
+            ComputePiRemote computePiRemote = (ComputePiRemote) new InitialContext().lookup(name);
+            BigDecimal pi = computePiRemote.computePi(Integer.parseInt(args[0]));
+            System.out.println(pi);
             
             //Gesamtanzahl der Tropfen
             int g = Integer.parseInt(args[1]);

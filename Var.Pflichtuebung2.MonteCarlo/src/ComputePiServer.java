@@ -1,13 +1,9 @@
-import java.math.BigDecimal;
+import java.math.*;
 import java.rmi.*;
-import java.rmi.server.*;
+import java.rmi.server.UnicastRemoteObject;
 
-@SuppressWarnings("serial")
-public class ComputePiServer extends UnicastRemoteObject implements ComputePiRemote {
-	
-	protected ComputePiServer() throws RemoteException{
-		super(); 
-	}
+
+public class ComputePiServer implements ComputePiRemote {
 	
 	@Override
 	public BigDecimal computePi(int g) throws RemoteException {
@@ -31,6 +27,20 @@ public class ComputePiServer extends UnicastRemoteObject implements ComputePiRem
 			System.out.printf("%d Tropfen, davon %d  Tropfen im Viertelkreis, Pi etwa %g%n", g, v, pi);
 		    return new BigDecimal(pi);	
 	}
-
-
+	
+	public static void main(String[] args){
+	
+	String name = "/ComputePi";
+	
+	try {
+		ComputePiServer computePiServer = new ComputePiServer();
+		UnicastRemoteObject.exportObject(computePiServer, 0);
+		Naming.rebind(name, computePiServer);
+		System.out.println("ComputePiServer (re)bound");
+	}
+	catch (Exception e){
+		System.err.println("ComputePiServer exception: " + e.getMessage());
+		e.printStackTrace();
+	}
+}
 }

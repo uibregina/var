@@ -1,4 +1,4 @@
-import java.rmi.*;
+import javax.naming.*;
 
 public class ComputePiServerStartup  {
 
@@ -8,10 +8,10 @@ public class ComputePiServerStartup  {
             System.setSecurityManager(new SecurityManager());
         }
 
-        String name = "//" + args[0] + "/ComputePi";
+        String name = "/ComputePi";
         try {
             ComputePiServer computePiServer = new ComputePiServer();
-            Naming.rebind(name, computePiServer);
+            new InitialContext().rebind(name, computePiServer);
             System.out.println("ComputePiServer (re)bound");
         }
 
