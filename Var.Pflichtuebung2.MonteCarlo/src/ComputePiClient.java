@@ -1,4 +1,6 @@
 import java.math.*;
+import java.rmi.Naming;
+
 import javax.naming.*;
 
 public class ComputePiClient {
@@ -10,7 +12,7 @@ public class ComputePiClient {
     }
         try{
             String name = "ComputePi";
-            ComputePiRemote computePiRemote = (ComputePiRemote) new InitialContext().lookup(name);
+            ComputePiRemote computePiRemote = (ComputePiRemote) Naming.lookup(name);
             BigDecimal pi = computePiRemote.computePi(Integer.parseInt(args[0]));
             System.out.println(pi);
             
